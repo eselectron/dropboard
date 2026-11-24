@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101114">
+  <title>DROPBOARD — Brand Launch Planner</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <a class="brand" href="#" aria-label="DROPBOARD home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-mark-letter">D</span>
+      </span>
+      <span class="brand-wordmark">DROP<span class="brand-light">BOARD</span></span>
+    </a>
+
+    <div class="workspace-label">WORKSPACE</div>
+
+    <div class="brand-switcher-wrap">
+      <label for="brand-switcher">CURRENT BRAND</label>
+
+      <select id="brand-switcher">
+        <option value="">Loading brands...</option>
+      </select>
+
+      <button class="brand-manage-button" data-go="brands" type="button">
+        + Manage brands
+      </button>
+    </div>
+
+    <nav class="nav-menu">
+
+      <button class="nav-link active" data-page="dashboard">
+        <span>▦</span> Dashboard
+      </button>
+
+      <button class="nav-link" data-page="launches">
+        <span>◷</span> Launch planner
+      </button>
+
+      <button class="nav-link" data-page="products">
+        <span>◇</span> Products
+      </button>
+
+      <button class="nav-link" data-page="content">
+        <span>▤</span> Content planner
+      </button>
+
+      <button class="nav-link" data-page="tasks">
+        <span>☷</span> Tasks
+      </button>
+
+      <button class="nav-link" data-page="assistant">
+        <span>✦</span> AI Assistant
+      </button>
+
+      <button class="nav-link" data-page="saved-ideas">
+        <span>▣</span> Saved Ideas
+      </button>
+
+      <button class="nav-link" data-page="brands">
+        <span>◈</span> Brand management
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-note">
+        <span class="note-dot"></span>
+
+        <div>
+          <strong>Your creative space</strong>
+          <small>Plan your next move.</small>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">DROPBOARD V1.6</div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div>
+        <div class="eyebrow">YOUR BRAND WORKSPACE</div>
+
+        <div class="topbar-title">
+          <span id="topbar-brand-name">My First Brand</span>
+          <span class="accent">.</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <span class="status-pill">
+          <span class="status-dot"></span>
+          Workspace active
+        </span>
+
+        <div class="avatar" id="brand-avatar">D</div>
+      </div>
+
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="page active-page" id="dashboard-page">
+
+      <div class="hero">
+
+        <div class="hero-copy">
+          <span class="hero-kicker">YOUR BRAND. YOUR NEXT MOVE.</span>
+
+          <h1>Make every<br>drop <span>count.</span></h1>
+
+          <p>
+            One place to organize your products, plan your launches,
+            and keep your brand moving.
+          </p>
+
+          <button class="button button-primary" id="hero-add-launch">
+            + Create a launch
+          </button>
+        </div>
+
+        <div class="hero-art">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-square"></div>
+
+          <div class="art-label">
+            DROP<br>01<span> / 2026</span>
+          </div>
+
+          <div class="art-caption">PLAN IT. BUILD IT. DROP IT.</div>
+        </div>
+
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR OVERVIEW</div>
+          <h2>At a glance</h2>
+        </div>
+
+        <span class="muted small-text" id="dashboard-brand-label">
+          My First Brand
+        </span>
+      </div>
+
+      <div class="stats-grid">
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Upcoming launches</span>
+            <span class="stat-icon purple">◷</span>
+          </div>
+
+          <div class="stat-number" id="launch-count">0</div>
+          <div class="stat-description">Planned brand drops</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Products</span>
+            <span class="stat-icon blue">◇</span>
+          </div>
+
+          <div class="stat-number" id="product-count">0</div>
+          <div class="stat-description">In your product list</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Tasks remaining</span>
+            <span class="stat-icon orange">☷</span>
+          </div>
+
+          <div class="stat-number" id="task-count">0</div>
+          <div class="stat-description">Still to be completed</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Tasks completed</span>
+            <span class="stat-icon green">✓</span>
+          </div>
+
+          <div class="stat-number" id="completed-count">0</div>
+          <div class="stat-description">Progress you're making</div>
+        </article>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <div class="eyebrow">WHAT'S COMING UP</div>
+              <h3>Your launches</h3>
+            </div>
+
+            <button class="text-button" data-go="launches">
+              View all →
+            </button>
+          </div>
+
+          <div id="dashboard-launches" class="content-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <div class="eyebrow">STAY ON TRACK</div>
+              <h3>Recent tasks</h3>
+            </div>
+
+            <button class="text-button" data-go="tasks">
+              View all →
+            </button>
+          </div>
+
+          <div id="dashboard-tasks" class="content-list"></div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- LAUNCH PLANNER -->
+    <section class="page" id="launches-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">PLAN YOUR NEXT DROP</div>
+          <h1>Launch planner<span class="accent">.</span></h1>
+          <p>Keep every collection and release organized.</p>
+        </div>
+      </div>
+
+      <form class="form-panel" id="launch-form">
+
+        <h3>Create a launch</h3>
+
+        <div class="form-grid">
+
+          <label>
+            Launch name
+            <input id="launch-name" type="text" placeholder="e.g. Winter Essentials" required maxlength="60">
+          </label>
+
+          <label>
+            Launch date
+            <input id="launch-date" type="date" required>
+          </label>
+
+          <label class="full-width">
+            Description
+            <input id="launch-description" type="text" placeholder="A short description of this collection" maxlength="120">
+          </label>
+
+        </div>
+
+        <button class="button button-primary" type="submit">
+          + Add launch
+        </button>
+
+      </form>
+
+      <div class="section-heading compact-heading">
+        <div>
+          <div class="eyebrow">YOUR COLLECTIONS</div>
+          <h2>All launches</h2>
+        </div>
+
+        <span class="muted small-text" id="launch-total-label">0 launches</span>
+      </div>
+
+      <div class="launch-grid" id="launch-list"></div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="page" id="products-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">BUILD YOUR COLLECTION</div>
+          <h1>Products<span class="accent">.</span></h1>
+          <p>Keep track of the pieces you're preparing to release.</p>
+        </div>
+      </div>
+
+      <form class="form-panel" id="product-form">
+
+        <h3>Add a product</h3>
+
+        <div class="form-grid">
+
+          <label>
+            Product name
+            <input id="product-name" type="text" placeholder="e.g. Essential Hoodie" required maxlength="60">
+          </label>
+
+          <label>
+            Price ($)
+            <input id="product-price" type="number" placeholder="55" min="0" max="99999" step="0.01" required>
+          </label>
+
+          <label>
+            Category
+            <select id="product-category">
+              <option>Hoodie</option>
+              <option>T-shirt</option>
+              <option>Sweatpants</option>
+              <option>Jacket</option>
+              <option>Accessories</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>
+            Status
+            <select id="product-status">
+              <option>Planning</option>
+              <option>In production</option>
+              <option>Ready</option>
+            </select>
+          </label>
+
+          <label class="full-width">
+            Product photo
+            <input id="product-image" type="file" accept="image/*">
+            <small class="muted">Choose a photo from your computer. Images are automatically resized.</small>
+          </label>
+
+        </div>
+
+        <button class="button button-primary" type="submit">
+          + Add product
+        </button>
+
+      </form>
+
+      <div class="section-heading compact-heading">
+        <div>
+          <div class="eyebrow">YOUR INVENTORY PLAN</div>
+          <h2>Your products</h2>
+        </div>
+
+        <span class="muted small-text" id="product-total-label">0 products</span>
+      </div>
+
+      <div class="product-card-grid" id="product-list"></div>
+
+    </section>
+
+    <!-- CONTENT PLANNER -->
+    <section class="page" id="content-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">PLAN YOUR BRAND'S STORY</div>
+          <h1>Content planner<span class="accent">.</span></h1>
+          <p>Organize the content that builds anticipation for your next drop.</p>
+        </div>
+      </div>
+
+      <form class="form-panel" id="content-post-form">
+
+        <h3>Plan a post</h3>
+
+        <div class="form-grid">
+
+          <label>
+            Post idea
+            <input id="content-title" type="text" placeholder="e.g. Winter collection teaser" required maxlength="80">
+          </label>
+
+          <label>
+            Platform
+            <select id="content-platform">
+              <option>Instagram</option>
+              <option>TikTok</option>
+              <option>Both</option>
+            </select>
+          </label>
+
+          <label>
+            Content type
+            <select id="content-type">
+              <option>Reel</option>
+              <option>Story</option>
+              <option>Carousel</option>
+              <option>Photo</option>
+            </select>
+          </label>
+
+          <label>
+            Planned date
+            <input id="content-date" type="date" required>
+          </label>
+
+          <label class="full-width">
+            Caption / notes
+            <textarea id="content-caption" rows="3" maxlength="500" placeholder="Write your caption or notes..."></textarea>
+          </label>
+
+        </div>
+
+        <button class="button button-primary" type="submit">
+          + Add content
+        </button>
+
+      </form>
+
+      <div class="section-heading compact-heading">
+        <div>
+          <div class="eyebrow">YOUR CONTENT PIPELINE</div>
+          <h2>Planned content</h2>
+        </div>
+
+        <span class="muted small-text" id="content-total-label">0 posts</span>
+      </div>
+
+      <div class="content-post-grid" id="content-post-list"></div>
+
+    </section>
+
+    <!-- TASK MANAGER -->
+    <section class="page" id="tasks-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">MAKE IT HAPPEN</div>
+          <h1>Task manager<span class="accent">.</span></h1>
+          <p>Turn your launch plans into manageable steps.</p>
+        </div>
+      </div>
+
+      <form class="form-panel" id="task-form">
+
+        <h3>Add a task</h3>
+
+        <div class="form-grid">
+
+          <label class="full-width">
+            Task name
+            <input id="task-name" type="text" placeholder="e.g. Photograph the new collection" required maxlength="100">
+          </label>
+
+          <label>
+            Related launch
+            <select id="task-launch">
+              <option value="">No launch selected</option>
+            </select>
+          </label>
+
+          <label>
+            Priority
+            <select id="task-priority">
+              <option>Normal</option>
+              <option>High</option>
+              <option>Low</option>
+            </select>
+          </label>
+
+        </div>
+
+        <button class="button button-primary" type="submit">
+          + Add task
+        </button>
+
+      </form>
+
+      <div class="section-heading compact-heading">
+        <div>
+          <div class="eyebrow">YOUR TO-DO LIST</div>
+          <h2>All tasks</h2>
+        </div>
+
+        <span class="muted small-text" id="task-total-label">0 tasks</span>
+      </div>
+
+      <div class="task-list" id="task-list"></div>
+
+    </section>
+
+    <!-- AI ASSISTANT -->
+    <section class="page" id="assistant-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">YOUR CREATIVE PARTNER</div>
+          <h1>AI Assistant<span class="accent">.</span></h1>
+          <p>Get ideas and guidance for your next brand move.</p>
+        </div>
+      </div>
+
+      <div class="assistant-layout">
+
+        <div class="form-panel assistant-form">
+
+          <h3>What do you need help with?</h3>
+
+          <div class="assistant-brand-context" id="assistant-brand-context">
+            Generating prompts for
+            <strong id="assistant-brand-name">My First Brand</strong>.
+            Your brand profile will be included automatically.
+          </div>
+
+          <label>
+            Assistant tool
+            <select id="assistant-mode">
+              <option value="strategy">Launch strategy</option>
+              <option value="content">Social media content ideas</option>
+              <option value="description">Product description</option>
+              <option value="checklist">Launch checklist</option>
+              <option value="advice">Brand advice</option>
+            </select>
+          </label>
+
+          <label>
+            Related launch
+            <select id="assistant-launch">
+              <option value="">No specific launch</option>
+            </select>
+          </label>
+
+          <label>
+            Related product
+            <select id="assistant-product">
+              <option value="">No specific product</option>
+            </select>
+          </label>
+
+          <label>
+            Additional information
+            <textarea id="assistant-context" rows="5" placeholder="Tell us anything else the assistant should know..."></textarea>
+          </label>
+
+          <button class="button button-primary" id="generate-prompt" type="button">
+            ✦ Generate prompt
+          </button>
+
+        </div>
+
+        <div class="panel assistant-output">
+
+          <div class="eyebrow">YOUR GENERATED PROMPT</div>
+          <h3>Ready when you are.</h3>
+
+          <p class="muted">
+            Your prompt will appear here. Copy it into ChatGPT to get your personalized assistance.
+          </p>
+
+          <textarea id="assistant-result" rows="15" placeholder="Your generated prompt will appear here..." readonly></textarea>
+
+          <div class="saved-idea-inputs">
+
+            <label for="saved-idea-title">Name this idea</label>
+            <input id="saved-idea-title" type="text" maxlength="70" placeholder="e.g. Summer launch strategy">
+
+            <label for="saved-idea-category">Category</label>
+            <select id="saved-idea-category">
+              <option value="strategy">Launch Strategy</option>
+              <option value="content">Social Media</option>
+              <option value="description">Product Descriptions</option>
+              <option value="checklist">Launch Checklists</option>
+              <option value="advice">Brand Advice</option>
+              <option value="other">Other</option>
+            </select>
+
+          </div>
+
+          <div class="assistant-actions">
+
+            <button class="button button-primary" id="copy-prompt" type="button" disabled>
+              Copy prompt
+            </button>
+
+            <button class="button button-secondary" id="save-prompt" type="button">
+              + Save idea
+            </button>
+
+            <span id="assistant-message" class="muted small-text" aria-live="polite"></span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="assistant-disclaimer">
+        <strong>How it works</strong>
+        <p>
+          DROPBOARD creates a prompt using your current brand profile and saved workspace information.
+          Copy it into ChatGPT to receive AI-generated ideas. You can save useful prompts in your Ideas Library.
+          No API key or paid integration is required.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- SAVED IDEAS -->
+    <section class="page" id="saved-ideas-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">YOUR CREATIVE LIBRARY</div>
+          <h1>Saved ideas<span class="accent">.</span></h1>
+          <p>Keep useful prompts organized for this brand.</p>
+        </div>
+      </div>
+
+      <div class="saved-ideas-toolbar">
+
+        <div>
+          <div class="eyebrow">YOUR COLLECTION</div>
+          <h2>Your saved prompts</h2>
+        </div>
+
+        <div class="saved-ideas-filter-wrap">
+          <label for="saved-ideas-filter">Filter by category</label>
+
+          <select id="saved-ideas-filter">
+            <option value="all">All categories</option>
+            <option value="strategy">Launch Strategy</option>
+            <option value="content">Social Media</option>
+            <option value="description">Product Descriptions</option>
+            <option value="checklist">Launch Checklists</option>
+            <option value="advice">Brand Advice</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="saved-ideas-count muted small-text" id="saved-ideas-count">
+        0 ideas
+      </div>
+
+      <div class="saved-ideas-grid" id="saved-ideas-list">
+
+        <div class="empty-state">
+          No saved ideas yet. Generate a prompt and save it from the AI Assistant.
+        </div>
+
+      </div>
+
+      <div class="saved-ideas-tip">
+        <strong>TIP</strong>
+        <p>
+          Use your saved prompts as starting points. You can copy them into ChatGPT
+          and adjust them as your brand grows.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- BRAND MANAGEMENT -->
+    <section class="page" id="brands-page">
+
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">YOUR BRAND PORTFOLIO</div>
+          <h1>Brand management<span class="accent">.</span></h1>
+          <p>Create separate workspaces and keep every brand organized.</p>
+        </div>
+      </div>
+
+      <div class="brand-management-intro">
+
+        <div class="brand-management-icon">◈</div>
+
+        <div>
+          <h3>One studio. Multiple brands.</h3>
+          <p>
+            Each brand gets its own products, launches, tasks, content plans,
+            and saved ideas. Switching brands changes your workspace without
+            mixing their information.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="brand-management-grid">
+
+        <!-- CREATE BRAND -->
+        <form class="form-panel" id="new-brand-form">
+
+          <div class="eyebrow">EXPAND YOUR STUDIO</div>
+          <h3>Create a new brand</h3>
+
+          <p class="form-description">
+            Start a separate workspace for another clothing brand or creative project.
+          </p>
+
+          <label>
+            Brand name
+            <input id="new-brand-name" type="text" placeholder="e.g. VANTA" maxlength="50" required>
+          </label>
+
+          <label>
+            Industry / niche
+            <input id="new-brand-niche" type="text" placeholder="e.g. Streetwear">
+          </label>
+
+          <button class="button button-primary" type="submit">
+            + Create brand
+          </button>
+
+          <p class="form-feedback" id="new-brand-message" aria-live="polite"></p>
+
+        </form>
+
+        <!-- BRAND LIST -->
+        <div class="panel brand-list-panel">
+
+          <div class="eyebrow">YOUR WORKSPACES</div>
+          <h3>Your brands</h3>
+
+          <p class="form-description">
+            Select a brand to open its workspace.
+          </p>
+
+          <div id="brand-list" class="brand-list"></div>
+
+        </div>
+
+      </div>
+
+      <!-- EDIT BRAND PROFILE -->
+      <form class="form-panel brand-profile-form" id="brand-profile-form">
+
+        <div class="brand-profile-heading">
+
+          <div>
+            <div class="eyebrow">CURRENT WORKSPACE</div>
+            <h3>Edit brand profile</h3>
+
+            <p class="form-description">
+              These details help DROPBOARD create more relevant AI prompts for your brand.
+            </p>
+          </div>
+
+          <span class="brand-profile-badge">ACTIVE BRAND</span>
+
+        </div>
+
+        <div class="form-grid">
+
+          <label>
+            Brand name
+            <input id="brand-profile-name" type="text" maxlength="50" required>
+          </label>
+
+          <label>
+            Industry / niche
+            <input id="brand-profile-niche" type="text" maxlength="80" placeholder="e.g. Premium streetwear">
+          </label>
+
+          <label class="full-width">
+            Brand description
+            <textarea id="brand-profile-description" rows="3" maxlength="500" placeholder="What is your brand about? What makes it different?"></textarea>
+          </label>
+
+          <label class="full-width">
+            Target audience
+            <textarea id="brand-profile-audience" rows="2" maxlength="300" placeholder="Who are you creating products for?"></textarea>
+          </label>
+
+          <label class="full-width">
+            Visual identity / style
+            <textarea id="brand-profile-style" rows="2" maxlength="300" placeholder="Describe the colors, design style, and overall feel of your brand."></textarea>
+          </label>
+
+          <label>
+            Website
+            <input id="brand-profile-website" type="url" maxlength="200" placeholder="https://example.com">
+          </label>
+
+          <label>
+            Instagram
+            <input id="brand-profile-instagram" type="text" maxlength="100" placeholder="@yourbrand">
+          </label>
+
+          <label>
+            TikTok
+            <input id="brand-profile-tiktok" type="text" maxlength="100" placeholder="@yourbrand">
+          </label>
+
+        </div>
+
+        <div class="brand-profile-actions">
+
+          <button class="button button-primary" type="submit">
+            Save brand profile
+          </button>
+
+          <span id="brand-profile-message" class="muted small-text" aria-live="polite"></span>
+
+        </div>
+
+      </form>
+
+      <div class="brand-data-note">
+        <strong>YOUR DATA STAYS SEPARATE</strong>
+
+        <p>
+          Brand workspaces are currently saved in this browser on this device.
+          They are not yet synced to an online account or another device.
+          Keep a backup of important information.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <span>DROPBOARD <span class="accent">©</span> 2026</span>
+      <span>Built for brands with somewhere to go.</span>
+    </footer>
+
+  </main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
